@@ -1,0 +1,36 @@
+<div class="section-component container">
+  <div class="section-title">
+ 
+    
+    <button type="button" class="btn btn-primary float-right" (click)="addNewQuestion()"><i class="fa fa-plus"></i>Ajouter</button>
+
+  </div>
+  <div class="section-table">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Intitulé</th>
+          <th>Maximal</th>
+          <th>Minimal</th>
+          <th>Enseignant</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let question of questions">
+          <td>{{ question.intitule }}</td>
+          <td>{{ question.qualificatif.maximal }}</td>
+          <td>{{ question.qualificatif.minimal }}</td>
+          <td *ngIf="question.enseignant"></td>
+          <td *ngIf="!question.enseignant"></td>
+          <td>
+            <button type="button" class="btn btn-warning btn-sm" (click)="editQuestion(question)"><i class="fa fa-pencil"></i>Modifier</button>
+            <button type="button" class="btn btn-danger btn-sm" (click)="deleteQuestion(question)"><i class="fa fa-trash"></i>Supprimer</button>
+          </td>
+        </tr>
+        <td ></td>
+      </tbody>
+    </table>
+  </div>       
+
+</div>

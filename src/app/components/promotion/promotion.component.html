@@ -1,0 +1,25 @@
+<div class="section-component container">
+  <div class="section-title">
+ 
+  </div>
+  <div class="section-table">
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Sigle Promotion</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let promotion of promotions">
+          <td width="70%">{{ promotion.siglePromotion  }}</td>
+          <td width="30%">
+            <button type="button" class="btn btn-warning btn-sm" ><i class="fa fa-list"></i>Details</button>
+          </td>
+        </tr>
+        <td ></td>
+      </tbody>
+    </table>
+  </div>       
+
+</div>
