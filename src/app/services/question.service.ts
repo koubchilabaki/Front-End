@@ -15,8 +15,8 @@ import { map, filter } from 'rxjs/operators';
 })
 export class QuestionService {
 
-  baseUrl = environment.baseUrl+"/questions";
-  headers = new HttpHeaders({'Content-Type':'application/json'});
+  baseUrl = environment.baseUrl + '/questions';
+  headers = new HttpHeaders({'Content-Type': 'application/json'});
   private options = { headers: this.headers}
   questionSource = new  BehaviorSubject<Question>(null);
   questionData: any;
@@ -30,13 +30,17 @@ export class QuestionService {
     return this.httpClient.get<Question[]>(this.baseUrl);
   }
 
+<<<<<<< HEAD
   addQuestion(question: Question){
     console.log("add question service :"+question.intitule);
 
     return this.httpClient.post(this.baseUrl,question, {responseType: 'text' });
+=======
+>>>>>>> 5cd874e7ebcd6c7e4e632f04dd9561a730da3481
 
   }
 
+<<<<<<< HEAD
   public delete(question: Question): Observable<string> {
     return this.httpClient.post(this.baseUrl + "/deleteQuestion", question, { responseType: 'text' })
   }
@@ -47,12 +51,7 @@ export class QuestionService {
   changeQuestionId(questionSelected: Question){
     this.questionSource.next(questionSelected);
   }
+=======
+>>>>>>> 5cd874e7ebcd6c7e4e632f04dd9561a730da3481
 
-
-
- 
-  
-  // public save(user: User) {
-  //   return this.http.post<User>(this.usersUrl, user);
-  // }
 }

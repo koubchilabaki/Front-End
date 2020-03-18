@@ -1,8 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core'; 
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { RouterModule, Routes } from '@angular/router'; 
-import { ModalModule, BsModalService } from 'ngx-bootstrap/modal'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,7 +20,8 @@ import { EditQuestionComponent } from './components/edit-question/edit-question.
 import { AddQualificatifComponent } from './components/add-qualificatif/add-qualificatif.component';
 import { EditQualificatifComponent } from './components/edit-qualificatif/edit-qualificatif.component';
 import { RubriquesComponent } from './components/rubriques/rubriques.component';
-
+import {Qualificatif} from './models/qualificatif';
+import {FormationComponent} from './components/formation/formation.component';
 
  
 @NgModule({
@@ -38,7 +38,8 @@ import { RubriquesComponent } from './components/rubriques/rubriques.component';
     EditQuestionComponent,
     AddQualificatifComponent,
     EditQualificatifComponent,
-    RubriquesComponent
+    RubriquesComponent,
+    FormationComponent
   ],
   imports: [
     BrowserModule,
@@ -50,10 +51,10 @@ import { RubriquesComponent } from './components/rubriques/rubriques.component';
     ModalModule.forRoot()
   ],
   exports: [
-      
+
   ],
-  providers: [QuestionService,SectionComponent],
+  providers: [QuestionService, SectionComponent],
   bootstrap: [AppComponent],
-  entryComponents:[AddQuestionComponent]
+  entryComponents: [AddQuestionComponent]
 })
 export class AppModule { }

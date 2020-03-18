@@ -9,10 +9,9 @@ import { Observable } from 'rxjs';
 })
 export class PromotionService {
 
-  promotions:Promotion[];
-  
-  baseUrl = environment.baseUrl+"/promotions";
-  headers = new HttpHeaders({'Content-Type':'application/json'});
+  promotions: Promotion[];
+  baseUrl = environment.baseUrl + '/promotions';
+  headers = new HttpHeaders({'Content-Type': 'application/json'});
   private options = { headers: this.headers}
 
   constructor(private httpClient: HttpClient) { }

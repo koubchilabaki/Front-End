@@ -3,7 +3,10 @@ import { Promotion } from 'src/app/models/promotion';
 import { Router } from '@angular/router';
 import { PromotionService } from 'src/app/services/promotion.service';
 import { SectionComponent } from '../section/section.component';
+<<<<<<< HEAD
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
+=======
+>>>>>>> 5cd874e7ebcd6c7e4e632f04dd9561a730da3481
 
 @Component({
   selector: 'app-promotion',
@@ -12,10 +15,10 @@ import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 })
 export class PromotionComponent implements OnInit {
 
-  promotions:Promotion[];
+  promotions: Promotion[];
 
   constructor(private router: Router
-    ,private promotionService:PromotionService
+    ,private promotionService: PromotionService
     ,private secComp: SectionComponent
     ,private bsModalService: BsModalService) { }
 
@@ -25,7 +28,7 @@ export class PromotionComponent implements OnInit {
         console.log(data);
          Object.assign(this.promotions, data);
       }, error => {
-        console.log("Error while getting questions data ", error);
+        console.log('Error while getting questions data ', error);
       });
     }
 
@@ -35,7 +38,7 @@ export class PromotionComponent implements OnInit {
     this.promotionService.findAll().subscribe((promotions)=>{
       console.log(promotions[0]);
       this.promotions = promotions;
-    },(error)=>{
+    }, (error) => {
       console.log(error);
     });
   }
