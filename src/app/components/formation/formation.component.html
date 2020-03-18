@@ -1,0 +1,28 @@
+<div class="section-component container">
+  <div class="section-title">
+
+
+    <button type="button" class="btn btn-primary float-right" ><i class="fa fa-plus"></i>Ajouter</button>
+
+  </div>
+  <div class="section-table">
+    <table class="table table-bordered table-hover">
+      <thead>
+      <tr>
+        <th>Code formation</th>
+        <th>Nom formation</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let formation of formations">
+        <td width="30%">{{ formation.codeFormation }}</td>
+        <td width="50%">{{ formation.nomFormation }}</td>
+        <td with="20%"><button type="button" class="btn btn-danger btn-sm" routerLink="/promotions/{{formation.codeFormation}}"><i class="fa fa-list" aria-hidden="true"></i></button></td>
+      </tr>
+      <td ></td>
+      </tbody>
+    </table>
+  </div>
+
+</div>

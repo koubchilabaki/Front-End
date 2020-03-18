@@ -15,8 +15,8 @@ import { map, filter } from 'rxjs/operators';
 })
 export class QuestionService {
 
-  baseUrl = environment.baseUrl+"/questions";
-  headers = new HttpHeaders({'Content-Type':'application/json'});
+  baseUrl = environment.baseUrl + '/questions';
+  headers = new HttpHeaders({'Content-Type': 'application/json'});
   private options = { headers: this.headers}
   questionSource = new  BehaviorSubject<Question>(null);
   questionData: any;
@@ -30,10 +30,10 @@ export class QuestionService {
     return this.httpClient.get<Question[]>(this.baseUrl);
   }
 
-  addQuestion(question: any){
-    console.log("add question service :"+question.intitule);
+  addQuestion(question: any) {
+    console.log('add question service :' + question.intitule);
 
-    return this.httpClient.post<any>(this.baseUrl,question, {responseType: 'text' });
+    return this.httpClient.post(this.baseUrl, question, { responseType: 'text' });
     //   .subscribe(response => {
     //     console.log('Rep '+response); 
     //   },
@@ -46,26 +46,19 @@ export class QuestionService {
 
 public save(question: Question) {
   // return this.httpClient.post<Question>(this.usersUrl, user, { headers: header});
-  return this.httpClient.post<Question>(this.baseUrl + "/uestions", question, { headers: this.headers})
+  return this.httpClient.post<Question>(this.baseUrl + '/questions', question, { headers: this.headers});
 
 }
 
 public delete(question: Question): Observable<string> {
-  return this.httpClient.post<string>(this.baseUrl + "/deleteQuestion", question, { responseType: 'text' })
+  return this.httpClient.post(this.baseUrl + '/deleteQuestion', question, { responseType: 'text' });
 }
 
-updatePost(question: Question): Observable<string>{
-  return this.httpClient.put<string>(this.baseUrl, question, { responseType: 'text' })
+updatePost(question: Question): Observable<string> {
+  return this.httpClient.put(this.baseUrl, question, { responseType: 'text' });
 }
-changeQuestionId(questionSelected: Question){
+changeQuestionId(questionSelected: Question) {
   this.questionSource.next(questionSelected);
 }
 
-
-
- 
-  
-  // public save(user: User) {
-  //   return this.http.post<User>(this.usersUrl, user);
-  // }
 }

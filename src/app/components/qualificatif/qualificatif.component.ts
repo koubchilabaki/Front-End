@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 import { Qualificatif } from 'src/app/models/qualificatif';
 import { SectionComponent } from '../section/section.component';
@@ -16,13 +16,12 @@ import { EditQualificatifComponent } from '../edit-qualificatif/edit-qualificati
 export class QualificatifComponent implements OnInit {
 
 
-  qualificatifs:Qualificatif[];
+  qualificatifs: Qualificatif[];
   bsModalRef: BsModalRef;
-  
   constructor(private router: Router
-    ,private qualificatifService:QualificatifService
-    ,private secComp: SectionComponent
-    ,private bsModalService: BsModalService) { }
+,private qualificatifService: QualificatifService
+,private secComp: SectionComponent
+,private bsModalService: BsModalService) { }
 
     ngOnInit() {
       this.qualificatifService.findAll().subscribe((qualificatifs)=>{
@@ -37,14 +36,14 @@ export class QualificatifComponent implements OnInit {
         this.qualificatifs = data;
         // Object.assign(this.qualificatifs, data);
       }, error => {
-        console.log("Error while getting qualificatifs data ", error);
+        console.log('Error while getting qualificatifs data ', error);
       });
     }
     addNewQualificatif() {
 
       this.bsModalRef = this.bsModalService.show(AddQualificatifComponent);
       this.bsModalRef.content.event.subscribe(result => {
-        console.log('result :'+result);
+        console.log('result :' + result);
         if (result == 'OK') {
           this.getQualificatifs();
         }

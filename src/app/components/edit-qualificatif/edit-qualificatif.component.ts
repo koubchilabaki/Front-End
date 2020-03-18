@@ -3,7 +3,7 @@ import { Qualificatif } from 'src/app/models/qualificatif';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { QualificatifService } from 'src/app/services/qualificatif.service';
 import { EnseignantService } from 'src/app/services/enseignant.service';
-import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-edit-qualificatif',
