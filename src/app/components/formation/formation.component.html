@@ -18,7 +18,7 @@
       <tr *ngFor="let formation of formations">
         <td width="30%">{{ formation.codeFormation }}</td>
         <td width="50%">{{ formation.nomFormation }}</td>
-        <td with="20%"><button type="button" class="btn btn-danger btn-sm" routerLink="/promotions/{{formation.codeFormation}}"><i class="fa fa-list" aria-hidden="true"></i></button></td>
+        <td with="20%"><button type="button" class="btn btn-danger btn-sm" [routerLink]="['/promotions', formation.codeFormation]"><i class="fa fa-list" aria-hidden="true"></i></button></td>
       </tr>
       <td ></td>
       </tbody>

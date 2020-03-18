@@ -21,4 +21,8 @@ export class PromotionService {
   public findAll(): Observable<Promotion[]> {
     return this.httpClient.get<Promotion[]>(this.baseUrl);
   }
+
+  public getPromotion(codeFormation:string): Observable<Promotion[]>{
+    return this.httpClient.get<Promotion[]>(`${this.baseUrl}/${codeFormation}`);
+  }
 }

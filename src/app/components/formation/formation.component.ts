@@ -21,7 +21,7 @@ export class FormationComponent implements OnInit {
 
   ngOnInit(): void {
     this.formationService.findAll().subscribe((formations)=>{
-      console.log(formations[0]);
+      //console.log(formations[0]);
       this.formations = formations;
     },(error)=>{
       console.log("Errrrrrr: "+this.formations+''+error);

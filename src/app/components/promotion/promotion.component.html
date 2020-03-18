@@ -6,15 +6,17 @@
     <table class="table table-bordered table-hover">
       <thead>
         <tr>
+          <th>Année</th>
           <th>Sigle Promotion</th>
-          <th>Actions</th>
+          <th>Lste des étudiants</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let promotion of promotions">
-          <td width="70%">{{ promotion.siglePromotion  }}</td>
-          <td width="30%">
-            <button type="button" class="btn btn-warning btn-sm" ><i class="fa fa-list"></i>Details</button>
+          <td width="40%">{{ promotion.id.anneeUniversitaire  }}</td>
+          <td width="40%">{{ promotion.siglePromotion  }}</td>
+          <td width="20%">
+            <button type="button" class="btn btn-warning btn-sm" ><i class="fa fa-list"></i></button>
           </td>
         </tr>
         <td ></td>

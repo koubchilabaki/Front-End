@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Promotion } from 'src/app/models/promotion';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { PromotionService } from 'src/app/services/promotion.service';
 import { SectionComponent } from '../section/section.component';
-<<<<<<< HEAD
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
-=======
->>>>>>> 5cd874e7ebcd6c7e4e632f04dd9561a730da3481
 
 @Component({
   selector: 'app-promotion',
@@ -17,7 +14,7 @@ export class PromotionComponent implements OnInit {
 
   promotions: Promotion[];
 
-  constructor(private router: Router
+  constructor(private router: Router, private route: ActivatedRoute
     ,private promotionService: PromotionService
     ,private secComp: SectionComponent
     ,private bsModalService: BsModalService) { }
@@ -34,8 +31,9 @@ export class PromotionComponent implements OnInit {
 
 
   ngOnInit(): void {
-
-    this.promotionService.findAll().subscribe((promotions)=>{
+    let codeFormation = this.route.snapshot.paramMap.get('codeFormation');
+    console.log("code formation : ''''"+codeFormation);
+    this.promotionService.getPromotion(codeFormation).subscribe((promotions)=>{
       console.log(promotions[0]);
       this.promotions = promotions;
     }, (error) => {

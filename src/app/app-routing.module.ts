@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'questions', component: QuestionComponent},
   {path: 'rubriques', component: RubriqueComponent},//RubriquesComponent
   {path: 'rubrique', component: RubriquesComponent},//RubriquesComponent
-  {path: 'promotions', component: PromotionComponent},
+  {path: 'promotions/:codeFormation', component: PromotionComponent},
   {path: 'formations', component: FormationComponent}
 ];
 
