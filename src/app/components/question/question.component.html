@@ -10,19 +10,16 @@
       <thead>
         <tr>
           <th>Intitulé</th>
-          <th>Maximal</th>
           <th>Minimal</th>
-          <th>Enseignant</th>
+          <th>Maximal</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let question of questions">
           <td>{{ question.intitule }}</td>
-          <td>{{ question.qualificatif.maximal }}</td>
           <td>{{ question.qualificatif.minimal }}</td>
-          <td *ngIf="question.enseignant"></td>
-          <td *ngIf="!question.enseignant"></td>
+          <td>{{ question.qualificatif.maximal }}</td>
           <td>
             <button type="button" class="btn btn-warning btn-sm" (click)="editQuestion(question)"><i class="fa fa-pencil"></i>Modifier</button>
             <button type="button" class="btn btn-danger btn-sm" (click)="deleteQuestion(question)"><i class="fa fa-trash"></i>Supprimer</button>

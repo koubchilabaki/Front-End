@@ -87,7 +87,9 @@ export class QuestionComponent implements OnInit {
       }
     });
   }
-
+  onClose(){
+    this.bsModalRef.hide();
+  }
 
   // addNewPost() {
   //   this.bsModalRef = this.bsModalService.show(AddNewPostComponent);

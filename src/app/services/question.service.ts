@@ -30,36 +30,23 @@ export class QuestionService {
     return this.httpClient.get<Question[]>(this.baseUrl);
   }
 
-  addQuestion(question: any){
+  addQuestion(question: Question){
     console.log("add question service :"+question.intitule);
 
-    return this.httpClient.post<any>(this.baseUrl,question, {responseType: 'text' });
-    //   .subscribe(response => {
-    //     console.log('Rep '+response); 
-    //   },
-    //   error => {
-    //      console.log('Err '+error);
-    //   }
-    // );
-      //.catch(this.errorHandler);
+    return this.httpClient.post(this.baseUrl,question, {responseType: 'text' });
+
   }
 
-public save(question: Question) {
-  // return this.httpClient.post<Question>(this.usersUrl, user, { headers: header});
-  return this.httpClient.post<Question>(this.baseUrl + "/uestions", question, { headers: this.headers})
+  public delete(question: Question): Observable<string> {
+    return this.httpClient.post(this.baseUrl + "/deleteQuestion", question, { responseType: 'text' })
+  }
 
-}
-
-public delete(question: Question): Observable<string> {
-  return this.httpClient.post<string>(this.baseUrl + "/deleteQuestion", question, { responseType: 'text' })
-}
-
-updatePost(question: Question): Observable<string>{
-  return this.httpClient.put<string>(this.baseUrl, question, { responseType: 'text' })
-}
-changeQuestionId(questionSelected: Question){
-  this.questionSource.next(questionSelected);
-}
+  updatePost(question: Question): Observable<string>{
+    return this.httpClient.put(this.baseUrl, question, { responseType: 'text' })
+  }
+  changeQuestionId(questionSelected: Question){
+    this.questionSource.next(questionSelected);
+  }
 
 
 

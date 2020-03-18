@@ -3,7 +3,7 @@ import { Promotion } from 'src/app/models/promotion';
 import { Router } from '@angular/router';
 import { PromotionService } from 'src/app/services/promotion.service';
 import { SectionComponent } from '../section/section.component';
-import { BsModalService } from 'ngx-bootstrap/modal/ngx-bootstrap-modal';
+import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 
 @Component({
   selector: 'app-promotion',

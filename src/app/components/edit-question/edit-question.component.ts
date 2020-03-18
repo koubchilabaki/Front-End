@@ -64,5 +64,8 @@ export class EditQuestionComponent implements OnInit {
 */
   ngOnInit(): void {
   }
-
+  onClose() {
+    this.bsModalRef.hide();
+  }
+  
 }

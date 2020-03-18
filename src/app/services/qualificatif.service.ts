@@ -1,10 +1,11 @@
 import { Injectable, ɵConsole } from '@angular/core';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Qualificatif } from '../models/quesion';
+
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { range } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
+import { Qualificatif } from '../models/qualificatif';
 
 // import 'rxjs/add/operator/map';
 // import 'rxjs/add/operator/catch';
@@ -30,16 +31,16 @@ export class QualificatifService {
     return this.httpClient.get<Qualificatif[]>(this.baseUrl);
   }
 
-  addQualificatif(qualificatif: any){
-    return this.httpClient.post<any>(this.baseUrl,qualificatif, {responseType: 'text' });
+  addQualificatif(qualificatif: Qualificatif){
+    return this.httpClient.post(this.baseUrl,qualificatif, {responseType: 'text' });
   }
 
   public delete(qualificatif: Qualificatif): Observable<string> {
-    return this.httpClient.post<string>(this.baseUrl + "/deleteQualificatif", qualificatif, { responseType: 'text' })
+    return this.httpClient.post(this.baseUrl + "/deleteQualificatif", qualificatif, { responseType: 'text' })
   }
 
   updateQualificatif(qualificatif: Qualificatif): Observable<string>{
-    return this.httpClient.put<string>(this.baseUrl, qualificatif, { responseType: 'text' })
+    return this.httpClient.put(this.baseUrl, qualificatif, { responseType: 'text' })
   }
 
   changeQualificatifId(qualificatifSelected: Qualificatif){
