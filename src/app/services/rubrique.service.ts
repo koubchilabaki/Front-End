@@ -22,5 +22,24 @@ export class RubriqueService {
   public findAll(): Observable<Rubrique[]> {
     return this.httpClient.get<Rubrique[]>(this.baseUrl);
   }
+  public create(rubrique:Rubrique): Observable<any>
+  { 
+    rubrique.idRubrique=22;
+    rubrique.type="RBS";
+    rubrique.enseignantt=null;
+    console.log(rubrique);
+    return this.httpClient.post(this.baseUrl+"/CreateRubrique", rubrique,{responseType: 'text' });
+
+  } 
+
+  public delete(id:number){
+
+    return this.httpClient.delete(this.baseUrl+"/deleteRubrique-"+id,{responseType: 'text' });
+  }
+  public update(rubrique:Rubrique){
+   
+    console.log(rubrique);
+    return this.httpClient.put(this.baseUrl+"/updateRubrique", rubrique,{responseType: 'text' });
+  }
 
 }

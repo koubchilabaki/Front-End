@@ -2,7 +2,7 @@
   <div class="section-title">
 
 
-    <button type="button" class="btn btn-primary float-right" ><i class="fa fa-plus"></i>Ajouter</button>
+    <button type="button" class="btn btn-primary float-right" value="Retour" onclick="history.go(-1)"><i class="fa fa-backward"></i>Retour</button>
 
   </div>
   <div class="section-table">
@@ -18,7 +18,7 @@
       <tr *ngFor="let formation of formations">
         <td width="30%">{{ formation.codeFormation }}</td>
         <td width="50%">{{ formation.nomFormation }}</td>
-        <td with="20%"><button type="button" class="btn btn-danger btn-sm" routerLink="/promotions/{{formation.codeFormation}}"><i class="fa fa-list" aria-hidden="true"></i></button></td>
+        <td with="20%"><button type="button" class="btn btn-danger btn-sm" [routerLink]="['/promotions', formation.codeFormation]"><i class="fa fa-list" aria-hidden="true"></i></button></td>
       </tr>
       <td ></td>
       </tbody>

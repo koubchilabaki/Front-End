@@ -1,0 +1,31 @@
+<div class="section-component container">
+  <div class="section-title">
+    <button type="button" class="btn btn-primary float-right" value="Retour" onclick="history.go(-1)"><i class="fa fa-backward"></i>Retour</button>
+  </div>
+  <div class="section-table">
+    <table class="table table-bordered table-hover">
+      <thead>
+      <tr>
+        <th>Civilité</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Email</th>
+        <th>Nationalité</th>
+        <th>Université d'origine</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let etudiant of etudiants">
+        <td width="8%">{{ etudiant.sexe }}</td>
+        <td width="20%">{{  etudiant.nom }}</td>
+        <td width="15%">{{  etudiant.prenom }}</td>
+        <td width="30%">{{  etudiant.email }}</td>
+        <td width="20%">{{ etudiant.nationalite  }}</td>
+        <td width="15%">{{ etudiant.universiteOrigine  }}</td>
+      </tr>
+      <td ></td>
+      </tbody>
+    </table>
+  </div>
+
+</div>
