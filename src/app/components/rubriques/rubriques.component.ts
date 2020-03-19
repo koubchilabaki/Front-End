@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { Question } from 'src/app/models/quesion';
 import { Rubrique } from 'src/app/models/rubriques';
 import { SectionComponent } from '../section/section.component';
 import { RubriqueService } from 'src/app/services/rubrique.service';
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 import { Router } from '@angular/router';
+import {MatTableDataSource} from "@angular/material/table";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatSort} from "@angular/material/sort";
 @Component({
   selector: 'app-rubriques',
   templateUrl: './rubriques.component.html',
@@ -25,10 +28,17 @@ export class RubriquesComponent implements OnInit {
   showModalMessage:boolean;
   showModalConfirmation:boolean;
 
+  displayedColumns: string[] = ['designation', 'ordre', 'actions'];
+  dataSource: MatTableDataSource<Rubrique>;
+
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
   constructor(private router: Router,
     private rubriqueService:RubriqueService
     ,private secComp: SectionComponent
-    ,private bsModalService: BsModalService) { }
+    ,private bsModalService: BsModalService) {
+  }
 
     getRubriques() {
       this.rubriqueService.findAll().subscribe(data => {
@@ -38,11 +48,16 @@ export class RubriquesComponent implements OnInit {
           {
             return -1;
           }
-          else 
+          else
           {
             return 1 ;
           }
         });
+
+        this.dataSource = new MatTableDataSource(this.rubriques);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+
         // Object.assign(this.questions, data);
       }, error => {
         console.log("Error while getting questions data ", error);
@@ -54,12 +69,16 @@ export class RubriquesComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.rubriqueService.findAll().subscribe((rubriques)=>{
-      console.log(rubriques[0]);
-      this.rubriques = rubriques;
-    },(error)=>{
-      console.log(error);
-    });
+    this.getRubriques();
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
 

@@ -22,6 +22,12 @@ import { RubriquesComponent } from './components/rubriques/rubriques.component';
 import {Qualificatif} from './models/qualificatif';
 import {FormationComponent} from './components/formation/formation.component';
 import { EtudiantComponent } from './components/etudiant/etudiant.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatSortModule} from "@angular/material/sort";
 
  
 @NgModule({
@@ -48,7 +54,13 @@ import { EtudiantComponent } from './components/etudiant/etudiant.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    BrowserAnimationsModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSortModule,
+    MatTableModule
   ],
   exports: [
 
