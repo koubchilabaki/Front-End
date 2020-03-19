@@ -23,6 +23,7 @@ import { RubriquesComponent } from './components/rubriques/rubriques.component';
 import {Qualificatif} from './models/qualificatif';
 import {FormationComponent} from './components/formation/formation.component';
 import { DeleteQualificatifComponent } from './components/delete-qualificatif/delete-qualificatif.component';
+import { DeleteQuestionComponent } from './components/delete-question/delete-question.component';
 
  
 @NgModule({
@@ -41,7 +42,8 @@ import { DeleteQualificatifComponent } from './components/delete-qualificatif/de
     EditQualificatifComponent,
     RubriquesComponent,
     FormationComponent,
-    DeleteQualificatifComponent
+    DeleteQualificatifComponent,
+    DeleteQuestionComponent
   ],
   imports: [
     BrowserModule,

@@ -34,14 +34,16 @@ export class QuestionService {
     question.type = "QUS";
     return this.httpClient.post(this.baseUrl,question, {responseType: 'text' });
   }
-  public delete(question: Question): Observable<string> {
+  deleteQuestion(question: Question): Observable<string> {
     return this.httpClient.post(this.baseUrl + "/deleteQuestion", question, { responseType: 'text' })
   }
 
-  updatePost(question: Question): Observable<string>{
+  updateQuestion(question: Question): Observable<string>{
     return this.httpClient.put(this.baseUrl, question, { responseType: 'text' })
   }
   changeQuestionId(questionSelected: Question){
+    console.log("service QUS");
+    console.log(questionSelected);
     this.questionSource.next(questionSelected);
   }
 

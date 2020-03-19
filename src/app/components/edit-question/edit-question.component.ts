@@ -18,50 +18,44 @@ export class EditQuestionComponent implements OnInit {
   editQuestionForm: FormGroup;
   qualificatifs: Qualificatif[] = [];
   event: EventEmitter<any> = new EventEmitter();
-  enseignants: Enseignant[] = [];
-  question: Question = new Question();
-  typeQuestion: String = "QUS"
-  constructor(private builder: FormBuilder,private questionService: QuestionService, private enseignantService: EnseignantService,private qualificatifService:QualificatifService, private bsModalRef: BsModalRef, private bsModalService:BsModalService) {
+  question: Question;
+  idQualificatif : number;
+
+  constructor(private builder: FormBuilder,private questionService: QuestionService, private qualificatifService:QualificatifService, private bsModalRef: BsModalRef, private bsModalService:BsModalService) {
           this.editQuestionForm = this.builder.group({
             intitule: new FormControl('', []),
             qualificatif: new FormControl(null, []),
-            enseignant: new FormControl('', []),
-            type: new FormControl('', [])
           });
 
-                this.qualificatifService.findAll().subscribe(data => {
-                  Object.assign(this.qualificatifs, data);
-                }, error => { console.log('Error while gettig data qualificatifs.'); });
+          this.qualificatifService.findAll().subscribe(data => {
+            this.qualificatifs = data;
+          }, error => { console.log('Error while gettig data qualificatifs.'); });
 
-                this.enseignantService.findAll().subscribe(dataEns => {
-                  Object.assign(this.enseignants, dataEns);
-                }, error => { console.log('Error while gettig data enseignants.'); });
 
-                this.questionService.questionData.subscribe(data => {
-                                                // if (this.postId !== undefined) {
-                    
-                      this.question = data;
-                      
-                      if (this.editQuestionForm!=null && this.question!=null) {
-                        this.editQuestionForm.controls['intitule'].setValue(this.question.intitule);
-                        this.editQuestionForm.controls['qualificatif'].setValue(this.question.qualificatif.idQualificatif);
-                        this.editQuestionForm.controls['enseignant'].setValue(this.question.enseignant.noEnseignant);
-                        this.editQuestionForm.controls['type'].setValue(this.question.type);
-                      }
-                });
+          this.questionService.questionData.subscribe(data => {
+            this.question = data;
+            console.log("get Qus data");
+            console.log(this.question);
+            if (this.editQuestionForm!=null && this.question!=null) {
+              this.editQuestionForm.controls['intitule'].setValue(this.question.intitule);
+              this.editQuestionForm.controls['qualificatif'].setValue(this.question.qualificatif);
+            }
+          });
    }
 
-   
-
-
-/*
-
-
-  event: EventEmitter<any> = new EventEmitter();
-  constructor(private builder: FormBuilder, private questionService: QuestionService, private enseignantService: EnseignantService, private qualificatifService: QualificatifService, private bsModalRef: BsModalRef) {
-   
-
-*/
+   onQuestionEditFormSubmit() {
+    console.log("test edit submit");
+    // this.questionService.updateQuestion(this.question).subscribe((data) => {
+    //   console.log('HANDLED', data);
+    //   alert(data);
+    //   if (data != null) {
+    //     this.event.emit('OK');
+    //     this.bsModalRef.hide();
+    //   }
+    // },(error) => {
+    //   console.log("Error while getting question data ", error);
+    // });
+  }
   ngOnInit(): void {
   }
   onClose() {
