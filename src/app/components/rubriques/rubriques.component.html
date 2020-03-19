@@ -10,14 +10,16 @@
         <thead>
           <tr>
             <th>Désignation rubrique</th>
+            <th>Ordre</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let rubrique of rubriques">
             <td width="70%">{{ rubrique.designation }}</td>
+            <td>{{ rubrique.ordre }}</td>
             <td width="30%">
-              <button type="button" class="btn btn-warning btn-sm"  (click)="showModifierRubrique(rubrique.idRubrique)"  ><i class="fa fa-pencil"></i>Modifier</button>
+              <button type="button" class="btn btn-warning btn-sm"  (click)="showModifierRubrique(rubrique.idRubrique)"  ><i class="fas fa-edit"></i> Modifier</button>
               <button type="button" class="btn btn-danger btn-sm" (click)=" ShowSurpprimerRubrique(rubrique.idRubrique)" ><i class="fa fa-trash"></i>Supprimer</button>
             </td>
           </tr>

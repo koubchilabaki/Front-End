@@ -61,53 +61,59 @@ export class RubriquesComponent implements OnInit {
       console.log(error);
     });
   }
-  
 
-  ajouterRubrique()
-  {
-    this.rubriqueService.create(this.rubriqueCreate).subscribe(message =>{
+
+  ajouterRubrique() {
+    this.rubriqueService.create(this.rubriqueCreate).subscribe(message => {
       console.log(message);
-    this.showModalCreate=false;
-    this.rubriqueCreate=new Rubrique();
-    this.getRubriques();
+      this.showModalCreate = false;
+      this.rubriqueCreate = new Rubrique();
+      this.getRubriques();
 
-    } );
-    
-  }
-  
-  
-  showModifierRubrique(id:number)
-  {
-    this.rubriqueEdit=this.rubriques.find(rubrique => rubrique.idRubrique == id);
-    this.showModalEdit=true;
-    this.getRubriques();
-  }
-  
-  ModifierRubrique()
-  {
-    this.rubriqueService.update(this.rubriqueEdit).subscribe(message =>{
-    this.showModalEdit=false;
-    this.rubriqueEdit=new Rubrique();
-    this.getRubriques();
+    });
 
-    } );
   }
 
-  ShowSurpprimerRubrique(id:number){
-    var designation=this.rubriques.find(rubrique => rubrique.idRubrique == id).designation;
-    this.IdRubriqueSupprimer=id;
-    this.message = "Êtes-vous sûr de vouloir supprimer la rubrique "+designation;
-    this.showModalConfirmation=true;
-  } 
 
-  SupprimerRubrique(){
-    this.showModalConfirmation=false;
-      this.rubriqueService.delete(this.IdRubriqueSupprimer).subscribe(message =>{
-         this.message=message;
-         this.showModalMessage=true;
-         this.IdRubriqueSupprimer=null;
-         this.getRubriques();
-      });
+  showModifierRubrique(id: number) {
+    this.rubriqueEdit = this.rubriques.find(rubrique => rubrique.idRubrique == id);
+    this.showModalEdit = true;
+    this.getRubriques();
+  }
+
+  ModifierRubrique() {
+    this.rubriqueService.update(this.rubriqueEdit).subscribe(message => {
+      this.showModalEdit = false;
+      this.rubriqueEdit = new Rubrique();
+      this.getRubriques();
+
+    }, error1 => {
+      this.showModalEdit = false;
+      this.rubriqueEdit = new Rubrique();
+      this.showModalMessage = true;
+      this.message = error1.error;
+    });
+  }
+
+  ShowSurpprimerRubrique(id: number) {
+    var designation = this.rubriques.find(rubrique => rubrique.idRubrique == id).designation;
+    this.IdRubriqueSupprimer = id;
+    this.message = "Êtes-vous sûr de vouloir supprimer la rubrique " + designation;
+    this.showModalConfirmation = true;
+  }
+
+  SupprimerRubrique() {
+    this.showModalConfirmation = false;
+    this.rubriqueService.delete(this.IdRubriqueSupprimer).subscribe(message => {
+      this.message = message;
+      this.showModalMessage = true;
+      this.IdRubriqueSupprimer = null;
+      this.getRubriques();
+    }, error1 => {
+      this.message = error1.error;
+      this.showModalMessage = true;
+      this.IdRubriqueSupprimer = null;
+    });
   }
   
 }
