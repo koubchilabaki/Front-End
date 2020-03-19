@@ -7,6 +7,8 @@ import { RubriqueComponent } from './components/rubrique/rubrique.component';
 import { PromotionComponent } from './components/promotion/promotion.component';
 import { RubriquesComponent } from './components/rubriques/rubriques.component';
 import {FormationComponent} from './components/formation/formation.component';
+import {Etudiant} from './models/etudiant';
+import {EtudiantComponent} from './components/etudiant/etudiant.component';
 
 
 const routes: Routes = [
@@ -17,6 +19,7 @@ const routes: Routes = [
   {path: 'rubriques', component: RubriqueComponent},//RubriquesComponent
   {path: 'rubrique', component: RubriquesComponent},//RubriquesComponent
   {path: 'promotions/:codeFormation', component: PromotionComponent},
+  {path: 'etudiants/:anneeUniversitaire/:codeFormation', component: EtudiantComponent},
   {path: 'formations', component: FormationComponent}
 ];
 

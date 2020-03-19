@@ -32,9 +32,7 @@ export class PromotionComponent implements OnInit {
 
   ngOnInit(): void {
     let codeFormation = this.route.snapshot.paramMap.get('codeFormation');
-    console.log("code formation : ''''"+codeFormation);
     this.promotionService.getPromotion(codeFormation).subscribe((promotions)=>{
-      console.log(promotions[0]);
       this.promotions = promotions;
     }, (error) => {
       console.log(error);
