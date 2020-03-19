@@ -5,7 +5,6 @@ import { SectionComponent } from '../section/section.component';
 import { RubriqueService } from 'src/app/services/rubrique.service';
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-rubriques',
   templateUrl: './rubriques.component.html',
@@ -13,21 +12,43 @@ import { Router } from '@angular/router';
 })
 export class RubriquesComponent implements OnInit {
 
+  
+  message:any = "";
 
+  IdRubriqueSupprimer:number;
+  rubriqueEdit:Rubrique = new Rubrique();
+  rubriqueCreate:Rubrique = new Rubrique();
   rubriques:Rubrique[];
+  
+  showModalCreate:boolean;
+  showModalEdit:boolean;
+  showModalMessage:boolean;
+  showModalConfirmation:boolean;
 
-  constructor(private router: Router
-    ,private rubriqueService:RubriqueService
+  constructor(private router: Router,
+    private rubriqueService:RubriqueService
     ,private secComp: SectionComponent
     ,private bsModalService: BsModalService) { }
 
     getRubriques() {
       this.rubriqueService.findAll().subscribe(data => {
-        this.rubriques = data;
+        this.rubriques = data.sort ((a,b) => {
+
+          if(a.ordre < b.ordre)
+          {
+            return -1;
+          }
+          else 
+          {
+            return 1 ;
+          }
+        });
         // Object.assign(this.questions, data);
       }, error => {
         console.log("Error while getting questions data ", error);
       });
+     
+      
     }
 
 
@@ -40,5 +61,53 @@ export class RubriquesComponent implements OnInit {
       console.log(error);
     });
   }
+  
 
+  ajouterRubrique()
+  {
+    this.rubriqueService.create(this.rubriqueCreate).subscribe(message =>{
+      console.log(message);
+    this.showModalCreate=false;
+    this.rubriqueCreate=new Rubrique();
+    this.getRubriques();
+
+    } );
+    
+  }
+  
+  
+  showModifierRubrique(id:number)
+  {
+    this.rubriqueEdit=this.rubriques.find(rubrique => rubrique.idRubrique == id);
+    this.showModalEdit=true;
+    this.getRubriques();
+  }
+  
+  ModifierRubrique()
+  {
+    this.rubriqueService.update(this.rubriqueEdit).subscribe(message =>{
+    this.showModalEdit=false;
+    this.rubriqueEdit=new Rubrique();
+    this.getRubriques();
+
+    } );
+  }
+
+  ShowSurpprimerRubrique(id:number){
+    var designation=this.rubriques.find(rubrique => rubrique.idRubrique == id).designation;
+    this.IdRubriqueSupprimer=id;
+    this.message = "Êtes-vous sûr de vouloir supprimer la rubrique "+designation;
+    this.showModalConfirmation=true;
+  } 
+
+  SupprimerRubrique(){
+    this.showModalConfirmation=false;
+      this.rubriqueService.delete(this.IdRubriqueSupprimer).subscribe(message =>{
+         this.message=message;
+         this.showModalMessage=true;
+         this.IdRubriqueSupprimer=null;
+         this.getRubriques();
+      });
+  }
+  
 }

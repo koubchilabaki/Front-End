@@ -10,7 +10,6 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SectionComponent } from './components/section/section.component';
 import { QuestionComponent } from './components/question/question.component';
 import { QualificatifComponent } from './components/qualificatif/qualificatif.component';
-import { RubriqueComponent } from './components/rubrique/rubrique.component';
 import { PromotionComponent } from './components/promotion/promotion.component';
 import { AcceuilComponent } from './components/acceuil/acceuil.component';
 import { QuestionService } from './services/question.service';
@@ -32,14 +31,14 @@ import {FormationComponent} from './components/formation/formation.component';
     SectionComponent,
     QuestionComponent,
     QualificatifComponent,
-    RubriqueComponent,
     PromotionComponent,
     AddQuestionComponent,
     EditQuestionComponent,
     AddQualificatifComponent,
     EditQualificatifComponent,
     RubriquesComponent,
-    FormationComponent
+    FormationComponent,
+
   ],
   imports: [
     BrowserModule,
