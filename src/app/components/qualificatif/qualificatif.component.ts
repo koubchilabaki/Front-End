@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { QualificatifService } from 'src/app/services/qualificatif.service';
 import { AddQualificatifComponent } from '../add-qualificatif/add-qualificatif.component';
 import { EditQualificatifComponent } from '../edit-qualificatif/edit-qualificatif.component';
+import { DeleteQualificatifComponent } from '../delete-qualificatif/delete-qualificatif.component';
 
 @Component({
   selector: 'app-qualificatif',
@@ -19,16 +20,15 @@ export class QualificatifComponent implements OnInit {
   qualificatifs: Qualificatif[];
   bsModalRef: BsModalRef;
   constructor(private router: Router
-,private qualificatifService: QualificatifService
-,private secComp: SectionComponent
-,private bsModalService: BsModalService) { }
+    ,private qualificatifService: QualificatifService
+    ,private secComp: SectionComponent
+    ,private bsModalService: BsModalService) { }
 
     ngOnInit() {
       this.qualificatifService.findAll().subscribe((qualificatifs)=>{
-        console.log(qualificatifs[0]);
         this.qualificatifs = qualificatifs;
       },(error)=>{
-        console.log(error);
+        console.log('Error while getting qualificatifs data ',error);
       });
     }
     getQualificatifs() {
@@ -36,7 +36,7 @@ export class QualificatifComponent implements OnInit {
         this.qualificatifs = data;
         // Object.assign(this.qualificatifs, data);
       }, error => {
-        console.log('Error while getting qualificatifs data ', error);
+        console.log('Error while getting qualificatifs data 2', error);
       });
     }
     addNewQualificatif() {
@@ -48,28 +48,32 @@ export class QualificatifComponent implements OnInit {
           this.getQualificatifs();
         }
       });
-  
     }
 
 
-
     editQualificatif(qualificatif: Qualificatif) {
-      console.log("editQuestion ");
       this.qualificatifService.changeQualificatifId(qualificatif);
-  
       this.bsModalRef = this.bsModalService.show(EditQualificatifComponent);
       this.bsModalRef.content.event.subscribe(result => {
         if (result == 'OK') {
-          setTimeout(() => {
-            this.getQualificatifs();
-          }, 5000);
+          this.getQualificatifs();
         }
       });
     }
   
-    /*
+    deleteQualificatif(qualificatif: Qualificatif) {
+      this.bsModalRef = this.bsModalService.show(DeleteQualificatifComponent);
+      this.bsModalRef.content.qualificatif = qualificatif;
+      this.bsModalRef.content.event.subscribe(result => {
+        console.log("deleted", result);
+        if (result == 'OK') {
+          this.qualificatifs=[];
+          this.getQualificatifs();
+        }
+      });
+    }
 
 
-*/
+/*---*/
 
 }

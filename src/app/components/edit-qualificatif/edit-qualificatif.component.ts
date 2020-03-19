@@ -2,7 +2,6 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import { Qualificatif } from 'src/app/models/qualificatif';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { QualificatifService } from 'src/app/services/qualificatif.service';
-import { EnseignantService } from 'src/app/services/enseignant.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -12,26 +11,19 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class EditQualificatifComponent implements OnInit {
   editQualificatifForm: FormGroup;
-  qualificatifs: Qualificatif[] = [];
+  qualificatif : Qualificatif;
   event: EventEmitter<any> = new EventEmitter();
-  qualificatif: Qualificatif = new Qualificatif();
-  constructor(private builder: FormBuilder, private enseignantService: EnseignantService,private qualificatifService:QualificatifService, private bsModalRef: BsModalRef, private bsModalService:BsModalService) {
+  // qualificatif: Qualificatif = new Qualificatif();
+
+  //constructeur
+  constructor(private builder: FormBuilder, private qualificatifService:QualificatifService, private bsModalRef: BsModalRef, private bsModalService:BsModalService) {
     this.editQualificatifForm = this.builder.group({
-      qualificatif: new FormControl(null, []),
       minimal: new FormControl('', []),
-      maximal: new FormControl(null, []),
+      maximal: new FormControl('', []),
     }); 
-    this.qualificatifService.findAll().subscribe(data => {
-      Object.assign(this.qualificatifs, data);
-    }, error => { console.log('Error while gettig data qualificatifs.'); });
 
-    this.qualificatifService.findAll().subscribe(dataEns => {
-      Object.assign(this.qualificatifs, dataEns);
-    }, error => { console.log('Error while gettig data enseignants.'); });
-
-    this.qualificatifService.qualificatifData.subscribe(data => {
-                                    // if (this.postId !== undefined) {
-        
+   this.qualificatifService.qualificatifData.subscribe(data => {
+                                    
           this.qualificatif = data;
           
           if (this.editQualificatifForm!=null && this.qualificatif!=null) {
@@ -39,13 +31,43 @@ export class EditQualificatifComponent implements OnInit {
             this.editQualificatifForm.controls['minimal'].setValue(this.qualificatif.minimal);
           }
     });
-  
-  
-  
   }
+  onQualificatifEditFormSubmit() {
 
+    this.qualificatifService.updateQualificatif(this.qualificatif).subscribe((data) => {
+      console.log('HANDLED', data);
+      alert(data);
+      if (data != null) {
+        this.event.emit('OK');
+        this.bsModalRef.hide();
+      }
+    },(error) => {
+      console.log("Error while getting qualificatifs data ", error);
+    });
+  }
+  testQualificatif(qualificatif: Qualificatif) {
+    console.log(qualificatif);
+  }
+  /*
+    onPostEditFormSubmit() {
+    let postData = {
+      'PostId': this.postId,
+      'Title': this.editPostForm.get('title').value,
+      'Description': this.editPostForm.get('description').value,
+      'CategoryId': this.editPostForm.get('category').value,
+    };
+
+    this.blogService.updatePost(postData).subscribe(data => {      
+        this.event.emit('OK');
+        this.bsModalRef.hide();      
+    });
+  }
+  
+  
+  */
   ngOnInit(): void {
   }
+  // fermer le modal de modification
   onClose() {
     this.bsModalRef.hide();
 

@@ -1,0 +1,20 @@
+<div role="document">
+    <div>
+      <form class="form-horizontal" id="delete-form">
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Supprimer un couple de qualificatif</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <div class="col-sm-12">
+                  <h3>Confirmez-vous la suppression ?</h3>
+                </div>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="onClose()">Annuler</button>
+          <button type="submit" class="btn btn-primary" (click)="deleteQualificatif(qualificatif)">Valider</button>
+        </div>
+      </form>
+    </div>
+  </div>

@@ -1,13 +1,9 @@
 import { Injectable, ɵConsole } from '@angular/core';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-<<<<<<< HEAD
-
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { range } from 'rxjs';
 import { Qualificatif } from '../models/qualificatif';
-=======
->>>>>>> 5cd874e7ebcd6c7e4e632f04dd9561a730da3481
 
 @Injectable({
   providedIn: 'root'
@@ -29,18 +25,22 @@ export class QualificatifService {
     return this.httpClient.get<Qualificatif[]>(this.baseUrl);
   }
 
-<<<<<<< HEAD
   addQualificatif(qualificatif: Qualificatif){
+    console.log("add Qualificatif");
+    console.log(qualificatif);
     return this.httpClient.post(this.baseUrl,qualificatif, {responseType: 'text' });
   }
 
-  public delete(qualificatif: Qualificatif): Observable<string> {
+  // deleteQualificatif(qualificatif: Qualificatif) {
+  //   console.log(qualificatif);
+  //   return this.httpClient.post(this.baseUrl + "/deleteQualificatif", qualificatif, { responseType: 'text' })
+  // }
+  deleteQualificatif(qualificatif: Qualificatif) {
     return this.httpClient.post(this.baseUrl + "/deleteQualificatif", qualificatif, { responseType: 'text' })
   }
-
   updateQualificatif(qualificatif: Qualificatif): Observable<string>{
-=======
->>>>>>> 5cd874e7ebcd6c7e4e632f04dd9561a730da3481
+    console.log('update'+qualificatif);
+    console.log(qualificatif);
     return this.httpClient.put(this.baseUrl, qualificatif, { responseType: 'text' })
   }
 

@@ -2,7 +2,7 @@
   <div class="section-title">
  
     
-    <button type="button" class="btn btn-primary float-right" (click)="addNewQuestion()"><i class="fa fa-plus"></i>Ajouter</button>
+    <button type="button" class="btn btn-primary float-right" (click)="addNewQuestion()"><i class="fa fa-plus"></i></button>
 
   </div>
   <div class="section-table">
@@ -21,11 +21,10 @@
           <td>{{ question.qualificatif.minimal }}</td>
           <td>{{ question.qualificatif.maximal }}</td>
           <td>
-            <button type="button" class="btn btn-warning btn-sm" (click)="editQuestion(question)"><i class="fa fa-pencil"></i>Modifier</button>
-            <button type="button" class="btn btn-danger btn-sm" (click)="deleteQuestion(question)"><i class="fa fa-trash"></i>Supprimer</button>
+            <button type="button" class="btn btn-warning btn-sm" (click)="editQuestion(question)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-danger btn-sm" (click)="deleteQuestion(question)"><i class="fa fa-trash" aria-hidden="true"></i></button>
           </td>
         </tr>
-        <td ></td>
       </tbody>
     </table>
   </div>       
