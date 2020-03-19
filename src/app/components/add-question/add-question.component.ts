@@ -28,17 +28,12 @@ export class AddQuestionComponent implements OnInit {
     this.addNewQuestionForm = this.builder.group({
       intitule: new FormControl('', []),
       qualificatif: new FormControl(null, []),
-      enseignant: new FormControl('', []),
-      type: new FormControl('', [])
     });
 
     this.qualificatifService.findAll().subscribe(data => {
       Object.assign(this.qualificatifs, data);
     }, error => { console.log('Error while gettig data qualificatifs.'); });
 
-    this.enseignantService.findAll().subscribe(dataEns => {
-      Object.assign(this.enseignants, dataEns);
-    }, error => { console.log('Error while gettig data enseignants.'); });
   }
 
   onQuestionFormSubmit() {
@@ -53,9 +48,6 @@ export class AddQuestionComponent implements OnInit {
     },(error) => {
       console.log("Error while getting questions data ", error);
     });
-
-
-
   }
 
 

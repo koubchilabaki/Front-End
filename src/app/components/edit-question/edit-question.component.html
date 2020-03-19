@@ -1,8 +1,8 @@
 <div role="document">
   <div>
-    <form class="form-horizontal" id="add-form" #myForm="ngForm" [formGroup]="editQuestionForm" (ngSubmit)="onQuestionEditFormSubmit()">
+    <form class="form-horizontal" id="edit-form" #myForm="ngForm" [formGroup]="editQuestionForm" (ngSubmit)="onQuestionEditFormSubmit()">
       <div class="modal-header">
-        <h4 class="modal-title pull-left">Modifier une question</h4>
+        <h4 class="modal-title pull-left">Ajouter une question</h4>
       </div>
       <div class="modal-body">
         <div class="form-group">
@@ -14,8 +14,8 @@
         <div class="form-group">
           <label class="col-sm-2 control-label">Qualificatif<span class="required" aria-required="true"> * </span></label>
           <div class="col-sm-10">
-            <select  class="form-control" formControlName="qualificatif">
-              <option *ngFor="let item of qualificatifs" [value]="item.idQualificatif" [selected]="item.idQualificatif==question.qualificatif.idQualificatif">{{item.idQualificatif}}-----{{item.minimal}} | {{item.maximal}}</option>
+            <select  class="form-control" formControlName="qualificatif" [(ngModel)]="question.qualificatif.idQualificatif">
+              <option *ngFor="let item of qualificatifs" [value]="item.idQualificatif">{{item.minimal}} | {{item.maximal}}</option>
             </select>
           </div>
         </div>

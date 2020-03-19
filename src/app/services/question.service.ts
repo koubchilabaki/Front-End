@@ -42,8 +42,6 @@ export class QuestionService {
     return this.httpClient.put(this.baseUrl, question, { responseType: 'text' })
   }
   changeQuestionId(questionSelected: Question){
-    console.log("service QUS");
-    console.log(questionSelected);
     this.questionSource.next(questionSelected);
   }
 

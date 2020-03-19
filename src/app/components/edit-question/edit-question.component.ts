@@ -34,8 +34,6 @@ export class EditQuestionComponent implements OnInit {
 
           this.questionService.questionData.subscribe(data => {
             this.question = data;
-            console.log("get Qus data");
-            console.log(this.question);
             if (this.editQuestionForm!=null && this.question!=null) {
               this.editQuestionForm.controls['intitule'].setValue(this.question.intitule);
               this.editQuestionForm.controls['qualificatif'].setValue(this.question.qualificatif);
@@ -44,22 +42,23 @@ export class EditQuestionComponent implements OnInit {
    }
 
    onQuestionEditFormSubmit() {
-    console.log("test edit submit");
-    // this.questionService.updateQuestion(this.question).subscribe((data) => {
-    //   console.log('HANDLED', data);
-    //   alert(data);
-    //   if (data != null) {
-    //     this.event.emit('OK');
-    //     this.bsModalRef.hide();
-    //   }
-    // },(error) => {
-    //   console.log("Error while getting question data ", error);
-    // });
+    this.questionService.updateQuestion(this.question).subscribe((data) => {
+      console.log('HANDLED', data);
+      alert(data);
+      if (data != null) {
+        this.event.emit('OK');
+        this.bsModalRef.hide();
+      }
+    },(error) => {
+      console.log("Error while getting question data ", error);
+    });
   }
-  ngOnInit(): void {
-  }
+
   onClose() {
     this.bsModalRef.hide();
   }
   
+  ngOnInit(): void {
+  }
+
 }
