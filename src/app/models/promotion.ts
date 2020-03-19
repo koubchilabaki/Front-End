@@ -1,6 +1,6 @@
-import {Id} from './id';
+import {IdPromotion} from './idPromotion';
 
 export class Promotion {
-    id:Id;
+    id:IdPromotion;
     siglePromotion:string;
 }

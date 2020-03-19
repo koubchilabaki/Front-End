@@ -21,6 +21,7 @@ import { EditQualificatifComponent } from './components/edit-qualificatif/edit-q
 import { RubriquesComponent } from './components/rubriques/rubriques.component';
 import {Qualificatif} from './models/qualificatif';
 import {FormationComponent} from './components/formation/formation.component';
+import { EtudiantComponent } from './components/etudiant/etudiant.component';
 
  
 @NgModule({
@@ -38,7 +39,7 @@ import {FormationComponent} from './components/formation/formation.component';
     EditQualificatifComponent,
     RubriquesComponent,
     FormationComponent,
-
+    EtudiantComponent
   ],
   imports: [
     BrowserModule,
