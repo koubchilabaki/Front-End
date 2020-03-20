@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { SectionComponent } from '../section/section.component';
 import { Question } from 'src/app/models/quesion';
 import { QuestionService } from 'src/app/services/question.service';
 import { QualificatifService } from 'src/app/services/qualificatif.service';
 import { Router } from '@angular/router';
-
+import {MatTableDataSource} from "@angular/material/table";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatSort} from "@angular/material/sort";
 import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 import { AddQuestionComponent } from '../../components/add-question/add-question.component';
 import { EditQuestionComponent } from '../edit-question/edit-question.component';
@@ -21,22 +23,26 @@ export class QuestionComponent implements OnInit {
   bsModalRef: BsModalRef;
   question: Question;
 
+  displayedColumns: string[] = ['intitule', 'minimal', 'maximal','actions'];
+  dataSource: MatTableDataSource<Question>;
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
   constructor(private router: Router
               ,private questionService:QuestionService
               ,private secComp: SectionComponent
               ,private bsModalService: BsModalService) {}
 
   ngOnInit() {
-    this.questionService.findAll().subscribe((questions)=>{
-      this.questions = questions;
-    },(error)=>{
-      console.log(error);
-    });
+    this.getQuestions();
   }
 
   getQuestions() {
     this.questionService.findAll().subscribe(data => {
       this.questions = data;
+      this.dataSource = new MatTableDataSource(this.questions);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     }, error => {
       console.log("Error while getting questions data ", error);
     });
@@ -79,6 +85,13 @@ export class QuestionComponent implements OnInit {
   onClose(){
     this.bsModalRef.hide();
   }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
 
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
 /*---*/
 }
