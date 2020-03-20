@@ -1,31 +1,82 @@
 <div class="section-component container">
   <div class="section-title">
-    <button type="button" class="btn btn-primary float-right" value="Retour" onclick="history.go(-1)"><i class="fa fa-backward"></i>Retour</button>
+    <button type="button" class="btn btn-primary float-right" value="Retour" onclick="history.go(-1)"><i class="fa fa-backward"></i> Retour</button>
   </div>
   <div class="section-table">
-    <table class="table table-bordered table-hover">
-      <thead>
-      <tr>
-        <th>Civilité</th>
-        <th>Nom</th>
-        <th>Prénom</th>
-        <th>Email</th>
-        <th>Nationalité</th>
-        <th>Université d'origine</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let etudiant of etudiants">
-        <td width="8%">{{ etudiant.sexe }}</td>
-        <td width="20%">{{  etudiant.nom }}</td>
-        <td width="15%">{{  etudiant.prenom }}</td>
-        <td width="30%">{{  etudiant.email }}</td>
-        <td width="20%">{{ etudiant.nationalite  }}</td>
-        <td width="15%">{{ etudiant.universiteOrigine  }}</td>
-      </tr>
-      <td ></td>
-      </tbody>
-    </table>
+    <!--  <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+          <th>Civilité</th>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Email</th>
+          <th>Nationalité</th>
+          <th>Université d'origine</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let etudiant of etudiants">
+          <td width="8%">{{ etudiant.sexe }}</td>
+          <td width="20%">{{  etudiant.nom }}</td>
+          <td width="15%">{{  etudiant.prenom }}</td>
+          <td width="30%">{{  etudiant.email }}</td>
+          <td width="20%">{{ etudiant.nationalite  }}</td>
+          <td width="15%">{{ etudiant.universiteOrigine  }}</td>
+        </tr>
+        <td ></td>
+        </tbody>
+      </table>
+      -->
+
+    <mat-form-field>
+      <mat-label>Filtre</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Rechercher un étudiant">
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort>
+
+        <!-- Designation Column -->
+        <ng-container matColumnDef="sexe">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Civilité </th>
+          <td mat-cell *matCellDef="let row"> {{row.sexe}} </td>
+        </ng-container>
+
+        <!-- Ordre Column -->
+        <ng-container matColumnDef="nom">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nom </th>
+          <td mat-cell *matCellDef="let row"> {{row.nom}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="prenom">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Prénom </th>
+          <td mat-cell *matCellDef="let row"> {{row.prenom}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+          <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="nationalite">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nationalité </th>
+          <td mat-cell *matCellDef="let row"> {{row.nationalite}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="universiteOrigine">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Université d'origine </th>
+          <td mat-cell *matCellDef="let row"> {{row.universiteOrigine}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+
+
+
   </div>
+
 
 </div>
