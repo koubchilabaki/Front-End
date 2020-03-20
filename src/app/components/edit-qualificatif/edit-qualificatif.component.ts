@@ -32,7 +32,7 @@ export class EditQualificatifComponent implements OnInit {
           }
     });
   }
-  onQualificatifEditFormSubmit() {
+  onEditQualificatifFormSubmit() {
 
     this.qualificatifService.updateQualificatif(this.qualificatif).subscribe((data) => {
       console.log('HANDLED', data);
