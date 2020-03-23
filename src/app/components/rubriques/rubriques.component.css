@@ -1,3 +1,7 @@
+.section-table{
+  margin-bottom: 50px;
+}
+
 .modal.show
 {
     display: block;
