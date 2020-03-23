@@ -1,3 +1,37 @@
-.navbar {
-  margin-bottom: 30px;
+.bg-dark {
+    background-color:#433f3f!important;
+}
+.content{
+margin-top:80px;
+}
+.titre{
+margin-bottom:10px
+}
+.titre h2{
+display:inline;
+}
+.titre .btn{
+float : right;
+}
+.bg-dark {
+    background-color:#433f3f!important;
+}
+.logo{
+margin-top:60px;
+text-align: center;
+}
+.login-section{
+    margin-top: 60px;
+  color : white;
+}
+.login-logo{
+    margin-bottom: 40px;
+}
+form{
+     background-color: #433f3f;
+     padding: 20px;
+     border-radius: 5px; 
+}
+label{
+  font-weight: bold;
 }
