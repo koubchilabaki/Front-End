@@ -13,7 +13,7 @@ import { BsModalService, BsModalRef } from "ngx-bootstrap/modal";
 export class PromotionComponent implements OnInit {
 
   promotions: Promotion[];
-
+  codeFormation:any;
   constructor(private router: Router, private route: ActivatedRoute
     ,private promotionService: PromotionService
     ,private secComp: SectionComponent
@@ -31,8 +31,8 @@ export class PromotionComponent implements OnInit {
 
 
   ngOnInit(): void {
-    let codeFormation = this.route.snapshot.paramMap.get('codeFormation');
-    this.promotionService.getPromotion(codeFormation).subscribe((promotions)=>{
+     this.codeFormation = this.route.snapshot.paramMap.get('codeFormation');
+    this.promotionService.getPromotion(this.codeFormation).subscribe((promotions)=>{
       this.promotions = promotions;
     }, (error) => {
       console.log(error);

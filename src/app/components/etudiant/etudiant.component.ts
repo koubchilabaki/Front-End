@@ -16,7 +16,8 @@ import {MatSort} from '@angular/material/sort';
 })
 export class EtudiantComponent implements OnInit {
     etudiants: Etudiant[];
-
+    codeFormation:any;
+    anneeUniversitaire:any;
   displayedColumns: string[] = ['sexe', 'nom', 'prenom','email','nationalite','universiteOrigine'];
   dataSource: MatTableDataSource<Etudiant>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -28,10 +29,10 @@ export class EtudiantComponent implements OnInit {
     ,private bsModalService: BsModalService) { }
 
   ngOnInit(): void {
-    let codeFormation = this.route.snapshot.paramMap.get('codeFormation');
-    let anneeUniversitaire = this.route.snapshot.paramMap.get('anneeUniversitaire');
+     this.codeFormation = this.route.snapshot.paramMap.get('codeFormation');
+    this.anneeUniversitaire = this.route.snapshot.paramMap.get('anneeUniversitaire');
     this.paginator._intl.itemsPerPageLabel = 'Enregistrements par page:';
-    this.getEtudiantsByACodeFormation(anneeUniversitaire, codeFormation);
+    this.getEtudiantsByACodeFormation(this.anneeUniversitaire, this.codeFormation);
   }
 
   getEtudiantsByACodeFormation(annee:string, code:string){
