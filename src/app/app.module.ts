@@ -1,8 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core'; 
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -31,9 +30,9 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatSortModule} from "@angular/material/sort";
 import { RubriqueComposeComponent } from './components/rubrique-compose/rubrique-compose.component';
-import { ListRubriqueComposeComponent } from './components/list-rubrique-compose/list-rubrique-compose.component';
+import { EvaluationComponent } from './components/evaluation/evaluation.component';
 
- 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +52,8 @@ import { ListRubriqueComposeComponent } from './components/list-rubrique-compose
     DeleteQuestionComponent,
     EtudiantComponent,
     RubriqueComposeComponent,
-    ListRubriqueComposeComponent
+    EtudiantComponent,
+    EvaluationComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,29 @@
 .section-table{
   padding-bottom: 170px;
 }
+.section-table{
+  margin-bottom: 50px;
+}
+
+.modal.show
+{
+  display: block;
+
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+
+.btn-warning {
+  margin-right: 10px;
+}
