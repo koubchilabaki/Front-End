@@ -17,9 +17,8 @@ export class DeleteQualificatifComponent implements OnInit {
   deleteQualificatif(qualificatif: Qualificatif) {
     this.qualificatifService.deleteQualificatif(qualificatif).subscribe((data) => {
     console.log('HANDLED', data);
-    alert(data);
     if (data != null) {
-      this.event.emit('OK');
+      this.event.emit(data);
       this.bsModalRef.hide();
     }
     },(error) => {

@@ -19,6 +19,8 @@ import { DeleteQuestionComponent } from '../delete-question/delete-question.comp
 })
 export class QuestionComponent implements OnInit {
 
+  message:string = "";
+  showModalMessage:boolean;
   questions:Question[];
   bsModalRef: BsModalRef;
   question: Question;
@@ -52,11 +54,10 @@ export class QuestionComponent implements OnInit {
     this.bsModalRef = this.bsModalService.show(AddQuestionComponent);
     this.bsModalRef.content.event.subscribe(result => {
       console.log('result :'+result);
-      if (result == 'OK') {
-        this.getQuestions();
-      }
+      this.message = result;
+      this.showModalMessage = true;
+      this.getQuestions();
     });
-
   }
 
   deleteQuestion(question: Question) {
@@ -64,10 +65,9 @@ export class QuestionComponent implements OnInit {
     this.bsModalRef.content.question = question;
     this.bsModalRef.content.event.subscribe(result => {
       console.log("deleted", result);
-      if (result == 'OK') {
-        // this.questions=[];
-        this.getQuestions();
-      }
+      this.message = result;
+      this.showModalMessage = true;
+      this.getQuestions();
     });
   }
  
@@ -77,9 +77,9 @@ export class QuestionComponent implements OnInit {
 
     this.bsModalRef = this.bsModalService.show(EditQuestionComponent);
     this.bsModalRef.content.event.subscribe(result => {
-      if (result == 'OK') {
-        this.getQuestions();
-      }
+      this.message = result;
+      this.showModalMessage = true;
+      this.getQuestions();
     });
   }
   onClose(){

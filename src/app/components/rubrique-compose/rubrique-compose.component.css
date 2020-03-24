@@ -1,0 +1,30 @@
+.modal.show
+{
+  display: block;
+
+}
+.title{
+  text-align: center;
+  font-size: large;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 25%;
+}
+
+.btn-warning {
+  margin-right: 10px;
+}
+
+.section-component {
+  margin-top: 100px;
+}

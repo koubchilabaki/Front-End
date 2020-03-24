@@ -6,9 +6,9 @@ import { QuestionComponent } from './components/question/question.component';
 import { PromotionComponent } from './components/promotion/promotion.component';
 import { RubriquesComponent } from './components/rubriques/rubriques.component';
 import {FormationComponent} from './components/formation/formation.component';
-import {Etudiant} from './models/etudiant';
 import {EtudiantComponent} from './components/etudiant/etudiant.component';
 import {EvaluationComponent} from './components/evaluation/evaluation.component';
+import {RubriqueComposeComponent} from "./components/rubrique-compose/rubrique-compose.component";
 
 
 const routes: Routes = [
@@ -21,7 +21,10 @@ const routes: Routes = [
   {path: 'promotions/:codeFormation', component: PromotionComponent},
   {path: 'etudiants/:anneeUniversitaire/:codeFormation', component: EtudiantComponent},
   {path: 'evaluations/:anneeUniversitaire/:codeFormation', component: EvaluationComponent},
-  {path: 'formations', component: FormationComponent}
+  {path: 'formations', component: FormationComponent},
+  {path: 'rubriqueCompose', component: RubriqueComposeComponent},
+  {path: 'rubriqueCompose/:idRubrique', component: RubriqueComposeComponent}
+
 ];
 
 @NgModule({
