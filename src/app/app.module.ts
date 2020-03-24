@@ -1,8 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core'; 
+import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -30,8 +29,9 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatSortModule} from "@angular/material/sort";
+import { EvaluationComponent } from './components/evaluation/evaluation.component';
 
- 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +49,8 @@ import {MatSortModule} from "@angular/material/sort";
     FormationComponent,
     DeleteQualificatifComponent,
     DeleteQuestionComponent,
-    EtudiantComponent
+    EtudiantComponent,
+    EvaluationComponent
   ],
   imports: [
     BrowserModule,

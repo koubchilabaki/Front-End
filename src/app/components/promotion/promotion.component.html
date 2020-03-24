@@ -11,18 +11,22 @@
           <th>Année</th>
           <th>Sigle Promotion</th>
           <th>Liste des étudiants</th>
+          <th>Liste des évaluations</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let promotion of promotions">
-          <td width="40%">{{ promotion.id.anneeUniversitaire  }}</td>
-          <td width="40%">{{ promotion.siglePromotion  }}</td>
+          <td width="30%">{{ promotion.id.anneeUniversitaire  }}</td>
+          <td width="30%">{{ promotion.siglePromotion  }}</td>
           <td width="20%">
             <button type="button" class="btn btn-warning btn-sm" [routerLink]="['/etudiants',promotion.id.anneeUniversitaire, promotion.id.codeFormation]"><i class="fa fa-list"></i></button>
+          </td>
+          <td width="20%">
+            <button type="button" class="btn btn-danger btn-sm" [routerLink]="['/evaluations',promotion.id.anneeUniversitaire, promotion.id.codeFormation]"><i class="fa fa-th-list" aria-hidden="true"></i></button>
           </td>
         </tr>
       </tbody>
     </table>
-  </div>       
+  </div>
 
 </div>
