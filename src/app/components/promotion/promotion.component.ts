@@ -31,7 +31,7 @@ export class PromotionComponent implements OnInit {
 
   ngOnInit(): void {
      this.codeFormation = this.route.snapshot.paramMap.get('codeFormation');
-     this.paginator._intl.itemsPerPageLabel = 'Enregistrements par page:';
+     //this.paginator._intl.itemsPerPageLabel = 'Enregistrements par page:';
     this.getPromotions(this.codeFormation);
   }
 
