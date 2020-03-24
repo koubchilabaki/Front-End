@@ -16,7 +16,8 @@ import {Evaluation} from '../../models/evaluation';
 })
 export class EvaluationComponent implements OnInit {
   evaluations: Evaluation[];
-
+  codeFormation:any;
+  anneeUniversitaire:any;
   displayedColumns: string[] = ['designation', 'etat','periode'];
   dataSource: MatTableDataSource<Evaluation>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -28,10 +29,10 @@ export class EvaluationComponent implements OnInit {
     ,private bsModalService: BsModalService) { }
 
   ngOnInit(): void {
-    let codeFormation = this.route.snapshot.paramMap.get('codeFormation');
-    let anneeUniversitaire = this.route.snapshot.paramMap.get('anneeUniversitaire');
+     this.codeFormation = this.route.snapshot.paramMap.get('codeFormation');
+    this.anneeUniversitaire = this.route.snapshot.paramMap.get('anneeUniversitaire');
     this.paginator._intl.itemsPerPageLabel = 'Enregistrements par page:';
-    this.getEvaluationsByACodeFormation(anneeUniversitaire, codeFormation);
+    this.getEvaluationsByACodeFormation(this.anneeUniversitaire, this.codeFormation);
   }
 
   getEvaluationsByACodeFormation(annee:string, code:string){
