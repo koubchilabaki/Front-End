@@ -17,9 +17,8 @@ export class DeleteQuestionComponent implements OnInit {
   deleteQuestion(question : Question) {
     this.questionService.deleteQuestion(question).subscribe((data) => {
     console.log('HANDLED', data);
-    alert(data);
     if (data != null) {
-      this.event.emit('OK');
+      this.event.emit(data);
       this.bsModalRef.hide();
     }
     },(error) => {

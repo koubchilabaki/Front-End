@@ -19,7 +19,8 @@ import { DeleteQualificatifComponent } from '../delete-qualificatif/delete-quali
 })
 export class QualificatifComponent implements OnInit {
 
-
+  message:string = "";
+  showModalMessage:boolean;
   qualificatifs: Qualificatif[];
   bsModalRef: BsModalRef;
 
@@ -53,9 +54,9 @@ export class QualificatifComponent implements OnInit {
       this.bsModalRef = this.bsModalService.show(AddQualificatifComponent);
       this.bsModalRef.content.event.subscribe(result => {
         console.log('result :' + result);
-        if (result == 'OK') {
-          this.getQualificatifs();
-        }
+        this.message = result;
+        this.showModalMessage = true;
+        this.getQualificatifs();
       });
     }
 
@@ -64,9 +65,9 @@ export class QualificatifComponent implements OnInit {
       this.qualificatifService.changeQualificatifId(qualificatif);
       this.bsModalRef = this.bsModalService.show(EditQualificatifComponent);
       this.bsModalRef.content.event.subscribe(result => {
-        if (result == 'OK') {
-          this.getQualificatifs();
-        }
+        this.message = result;
+        this.showModalMessage = true;
+        this.getQualificatifs();
       });
     }
   
@@ -75,10 +76,9 @@ export class QualificatifComponent implements OnInit {
       this.bsModalRef.content.qualificatif = qualificatif;
       this.bsModalRef.content.event.subscribe(result => {
         console.log("deleted", result);
-        if (result == 'OK') {
-          this.qualificatifs=[];
-          this.getQualificatifs();
-        }
+        this.message = result;
+        this.showModalMessage = true;
+        this.getQualificatifs();
       });
     }
     onClose(){

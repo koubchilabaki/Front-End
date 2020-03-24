@@ -84,3 +84,22 @@
   </div>       
 
 </div>
+
+<div class="modal" tabindex="-1" role="dialog"  [ngClass]="{'show':showModalMessage}" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title pull-left">Notification</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="showModalMessage=false">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h3>{{ message }} </h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModalMessage=false;message=''" >OK</button>
+      </div>
+    </div>
+  </div>
+</div>

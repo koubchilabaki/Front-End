@@ -31,9 +31,8 @@ export class AddQualificatifComponent implements OnInit {
 
     this.qualificatifService.addQualificatif(this.qualificatif).subscribe((data) => {
       console.log('HANDLED', data);
-      alert(data);
       if (data != null) {
-        this.event.emit('OK');
+        this.event.emit(data);
         this.bsModalRef.hide();
       }
     },(error) => {

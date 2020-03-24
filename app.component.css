@@ -1,0 +1,15 @@
+body{
+    background-color: #f1f1f1;
+  } 
+
+  .section-table{
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+.section-component{
+    background-color: #f1f1f1;
+  } 
+.section-table .table .btn-sm{
+    margin-left: 8px;
+    color: #ffff;
+}

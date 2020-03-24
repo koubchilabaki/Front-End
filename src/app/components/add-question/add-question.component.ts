@@ -40,9 +40,8 @@ export class AddQuestionComponent implements OnInit {
 
     this.questionService.addQuestion(this.question).subscribe((data) => {
       console.log('HANDLED', data);
-      alert(data);
       if (data != null) {
-        this.event.emit('OK');
+        this.event.emit(data);
         this.bsModalRef.hide();
       }
     },(error) => {
