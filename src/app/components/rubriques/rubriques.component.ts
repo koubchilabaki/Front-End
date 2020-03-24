@@ -15,7 +15,7 @@ import {MatSort} from "@angular/material/sort";
 })
 export class RubriquesComponent implements OnInit {
 
-  
+
   message:any = "";
 
   IdRubriqueSupprimer:number;
@@ -28,7 +28,7 @@ export class RubriquesComponent implements OnInit {
   showModalMessage:boolean;
   showModalConfirmation:boolean;
 
-  displayedColumns: string[] = ['designation', 'ordre', 'actions'];
+  displayedColumns: string[] = ['designation', 'actions'];
   dataSource: MatTableDataSource<Rubrique>;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -62,8 +62,8 @@ export class RubriquesComponent implements OnInit {
       }, error => {
         console.log("Error while getting questions data ", error);
       });
-     
-      
+
+
     }
 
 
@@ -134,5 +134,6 @@ export class RubriquesComponent implements OnInit {
       this.IdRubriqueSupprimer = null;
     });
   }
-  
+
+
 }

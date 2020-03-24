@@ -3,6 +3,7 @@ import { Rubrique } from '../models/rubriques';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import {Etudiant} from "../models/etudiant";
 
 @Injectable({
   providedIn: 'root'
@@ -42,4 +43,13 @@ export class RubriqueService {
     return this.httpClient.put(this.baseUrl+"/updateRubrique", rubrique,{responseType: 'text' });
   }
 
-}
+
+  public findRubriqueById(idRubrique : number): Observable<Rubrique>{
+
+    return this.httpClient.get<Rubrique>(`${this.baseUrl}/${idRubrique}`);
+  }
+
+
+  }
+
+

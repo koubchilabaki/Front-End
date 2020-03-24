@@ -30,6 +30,8 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatSortModule} from "@angular/material/sort";
+import { RubriqueComposeComponent } from './components/rubrique-compose/rubrique-compose.component';
+import { ListRubriqueComposeComponent } from './components/list-rubrique-compose/list-rubrique-compose.component';
 
  
 @NgModule({
@@ -49,7 +51,9 @@ import {MatSortModule} from "@angular/material/sort";
     FormationComponent,
     DeleteQualificatifComponent,
     DeleteQuestionComponent,
-    EtudiantComponent
+    EtudiantComponent,
+    RubriqueComposeComponent,
+    ListRubriqueComposeComponent
   ],
   imports: [
     BrowserModule,
