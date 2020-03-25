@@ -10,7 +10,7 @@ import {Evaluation} from '../models/evaluation';
 })
 export class EvaluationService {
 
-  baseUrl = environment.baseUrl + '/evaluations/findByAnneeCode';
+  baseUrl = environment.baseUrl + '/evaluations/findByAnneeCodeFormation';
   host = 'http://localhost:9090/findByAnneeCodeFormation/'
   headers = new HttpHeaders({'Content-Type': 'application/json'});
   private options = { headers: this.headers}
@@ -26,7 +26,7 @@ export class EvaluationService {
   }
 
   public getEvaluationsByACodeFormation(anneeUniversitaire: string, codeFormation:string): Observable<Evaluation[]>{
-   // return this.httpClient.get<Evaluation[]>(`${this.baseUrl}/${anneeUniversitaire}/${codeFormation}`);
-    return this.httpClient.get<Evaluation[]>(this.host+anneeUniversitaire+"/"+codeFormation);
+    return this.httpClient.get<Evaluation[]>(`${this.baseUrl}/${anneeUniversitaire}/${codeFormation}`);
+   // return this.httpClient.get<Evaluation[]>(this.host+anneeUniversitaire+"/"+codeFormation);
   }
 }

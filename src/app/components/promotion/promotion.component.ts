@@ -18,7 +18,7 @@ export class PromotionComponent implements OnInit {
 
   promotions: Promotion[];
   codeFormation:any;
-  displayedColumns: string[] = ['anneeUniversitaire', 'siglePromotion', 'etudiants'];
+  displayedColumns: string[] = ['anneeUniversitaire', 'siglePromotion', 'etudiants','evaluations'];
   dataSource: MatTableDataSource<Promotion>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -31,15 +31,13 @@ export class PromotionComponent implements OnInit {
 
   ngOnInit(): void {
      this.codeFormation = this.route.snapshot.paramMap.get('codeFormation');
-     this.paginator._intl.itemsPerPageLabel = 'Enregistrements par page:';
+     //this.paginator._intl.itemsPerPageLabel = 'Enregistrements par page:';
     this.getPromotions(this.codeFormation);
   }
 
   getPromotions(codeFormation:string) {
     this.promotionService.getPromotion(codeFormation).subscribe(data => {
       this.promotions = data;
-      console.log(codeFormation);
-      console.log(data);
       this.dataSource = new MatTableDataSource(this.promotions);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
