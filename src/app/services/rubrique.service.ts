@@ -55,7 +55,12 @@ export class RubriqueService {
     return this.httpClient.get<Question[]>(this.baseUrl+"/QuestionNonUtiliseDansrubrique-"+idRubrique)
   }
   public updateRubriqueQuestion(rubriqueQuestions:RubriqueQuestions[]){
+    console.log("udpate");
     return this.httpClient.put(this.baseUrl+"/updateRubriqueQuestion", rubriqueQuestions,{responseType: 'text' });
+  }
+  public deleteRubriqueQuestion(rubriqueQuestion:RubriqueQuestions){
+
+    return this.httpClient.post(this.baseUrl+"/deleteRubriqueQuestion",rubriqueQuestion,{responseType: 'text' });
   }
   
   

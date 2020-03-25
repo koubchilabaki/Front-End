@@ -8,6 +8,7 @@ import {RubriqueQuestion} from "../../models/rubrique-question.model";
 import {Rubrique} from "../../models/rubriques";
 import { Question } from 'src/app/models/quesion';
 import { RubriqueQuestions } from 'src/app/models/rubriqueQuestions';
+import {RubriqueQuestionPk} from "../../models/rubrique-question.model";
 import {SelectionModel} from "@angular/cdk/collections";
 
 @Component({
@@ -18,13 +19,18 @@ import {SelectionModel} from "@angular/cdk/collections";
 export class RubriqueComposeComponent implements OnInit {
 
   idRubrique: any;
+  idQuestionSupprimer:number;
 
-
+  showModalConfirmation:boolean;
   showModalCreate: boolean;
+  showModalMessage:boolean;
+
+  message:any="";
+
   rubrique: Rubrique = new Rubrique();
   questions:Question[] ;
-  rubriqueQuestions:RubriqueQuestions[];
-  displayedColumns: string[] = ['intitule', 'minimal', 'maximal'];
+  rubriqueQuestions:RubriqueQuestions[]=[];
+  displayedColumns: string[] = ['intitule', 'minimal', 'maximal','actions'];
   displayedColumns1: string[] = ['select', 'intitule', 'minimal', 'maximal'];
   dataSource: MatTableDataSource<RubriqueQuestion> = new MatTableDataSource();
   dataSource1: MatTableDataSource<Question> = new MatTableDataSource();
@@ -51,6 +57,7 @@ export class RubriqueComposeComponent implements OnInit {
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
+    //console.log("isAllSelected");
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource1.data.length;
     return numSelected === numRows;
@@ -58,6 +65,7 @@ export class RubriqueComposeComponent implements OnInit {
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
+    console.log("masterToggle");
     this.isAllSelected() ?
       this.selection.clear() :
       this.dataSource1.data.forEach(row => this.selection.select(row));
@@ -65,9 +73,15 @@ export class RubriqueComposeComponent implements OnInit {
 
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: Question): string {
+   
+    
     if (!row) {
+      console.log("test")
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+
     }
+    console.log(row);
+  
   }
 
 
@@ -110,7 +124,6 @@ export class RubriqueComposeComponent implements OnInit {
     
     this.rubriqueService.findQuestionNonUtilise(idRubrique).subscribe(data => {
       this.questions = data;
-      console.log(data);
       this.dataSource1 = new MatTableDataSource(this.questions);
 
       this.dataSource1.sortingDataAccessor = (item, property) => {
@@ -157,22 +170,32 @@ export class RubriqueComposeComponent implements OnInit {
   }
   saveRubriqueQuestion()
   {
-    this.rubriqueService.updateRubriqueQuestion(this.rubriqueQuestions).subscribe();
-    this.rubriqueQuestions= [];
-    this.getRubriquesComposeById(this.idRubrique);
-    this.getQuestionNonUtilise(this.idRubrique);
-    this.showModalCreate=false;
+
+    this.dataSource1.data.forEach(row => {
+      if(this.selection.isSelected(row))
+      { 
+          
+      this.Add(row.idQuestion);
+      }
+
+
+    });
+    this.rubriqueService.updateRubriqueQuestion(this.rubriqueQuestions).subscribe(data =>
+      {
+        this.rubriqueQuestions= [];
+        this.getRubriquesComposeById(this.idRubrique);
+        this.getQuestionNonUtilise(this.idRubrique);
+        this.showModalCreate=false;
+
+      });
+ 
     
   }
-
+  
 
   Add(idQuestion:number)
-  {
-    let rq=new  RubriqueQuestions();
-    rq.id.idQuestion=idQuestion;
-    rq.id.idRubrique=this.idRubrique;
-    rq.ordre=this.rubrique.ordre;
-    this.rubriqueQuestions.push(rq);
+  {  
+    this.rubriqueQuestions.push(new  RubriqueQuestions(this.rubrique.idRubrique,idQuestion,this.rubrique.ordre));
 
   }
   Annuler(){
@@ -181,5 +204,24 @@ export class RubriqueComposeComponent implements OnInit {
 
   }
 
+  Supprimer()
+  {
 
+    this.rubriqueService.deleteRubriqueQuestion(new RubriqueQuestions(this.rubrique.idRubrique,this.idQuestionSupprimer,this.rubrique.ordre)).subscribe(data =>
+     { this.getRubriquesComposeById(this.idRubrique);
+      this.getQuestionNonUtilise(this.idRubrique);
+      this.message =data ;
+      this.showModalConfirmation=false;
+      this.showModalMessage = true;
+      this.idQuestionSupprimer=null;
+      
+    })
+  }
+
+  ShowSurpprimerQuestion(idQuestion: number) {
+    var intitule = this.rubrique.rubriqueQuestions.find(question => question.questionn.idQuestion== idQuestion).questionn.intitule;
+    this.message = "Êtes-vous sûr de vouloir supprimer la question " + intitule +" de la rubrique";
+    this.idQuestionSupprimer=idQuestion
+    this.showModalConfirmation = true;
+  }
 }
