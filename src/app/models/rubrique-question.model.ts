@@ -9,4 +9,5 @@ export class RubriqueQuestion {
   id: RubriqueQuestionPk;
   ordre: number;
   questionn: Question;
+
 }

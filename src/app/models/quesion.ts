@@ -7,4 +7,5 @@ export class Question {
     type: string;
     enseignant: Enseignant;
     qualificatif: Qualificatif;
+
 }

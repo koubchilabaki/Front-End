@@ -31,6 +31,8 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSortModule} from "@angular/material/sort";
 import { RubriqueComposeComponent } from './components/rubrique-compose/rubrique-compose.component';
 import { EvaluationComponent } from './components/evaluation/evaluation.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
@@ -68,7 +70,9 @@ import { EvaluationComponent } from './components/evaluation/evaluation.componen
     MatFormFieldModule,
     MatInputModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
+    MatCheckboxModule,
+    MatSelectModule
   ],
   exports: [
 

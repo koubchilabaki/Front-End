@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {RubriqueService} from "../../services/rubrique.service";
 import {MatPaginator} from "@angular/material/paginator";
@@ -8,6 +8,7 @@ import {RubriqueQuestion} from "../../models/rubrique-question.model";
 import {Rubrique} from "../../models/rubriques";
 import { Question } from 'src/app/models/quesion';
 import { RubriqueQuestions } from 'src/app/models/rubriqueQuestions';
+import {SelectionModel} from "@angular/cdk/collections";
 
 @Component({
   selector: 'app-rubrique-compose',
@@ -18,16 +19,21 @@ export class RubriqueComposeComponent implements OnInit {
 
   idRubrique: any;
 
+
   showModalCreate: boolean;
   rubrique: Rubrique = new Rubrique();
   questions:Question[] ;
   rubriqueQuestions:RubriqueQuestions[];
   displayedColumns: string[] = ['intitule', 'minimal', 'maximal'];
+  displayedColumns1: string[] = ['select', 'intitule', 'minimal', 'maximal'];
   dataSource: MatTableDataSource<RubriqueQuestion> = new MatTableDataSource();
   dataSource1: MatTableDataSource<Question> = new MatTableDataSource();
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  @ViewChild(MatSort, {static: true}) sort: MatSort;
+
+
+  @ViewChildren(MatPaginator) paginator = new QueryList<MatPaginator>();
+  @ViewChildren(MatSort) sort = new QueryList<MatSort>();
+  selection = new SelectionModel<Question>(true, []);
 
   constructor(
     private rubriqueService: RubriqueService,
@@ -43,7 +49,29 @@ export class RubriqueComposeComponent implements OnInit {
 
   }
 
-  getRubriquesComposeById(idRubrique: number) {
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource1.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+      this.selection.clear() :
+      this.dataSource1.data.forEach(row => this.selection.select(row));
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: Question): string {
+    if (!row) {
+      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
+    }
+  }
+
+
+    getRubriquesComposeById(idRubrique: number) {
     this.rubriqueService.findRubriqueById(idRubrique).subscribe(data => {
       this.rubrique = data;
       this.dataSource= new MatTableDataSource(this.rubrique.rubriqueQuestions);
@@ -61,8 +89,8 @@ export class RubriqueComposeComponent implements OnInit {
         }
       };
 
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator.toArray()[0];
+      this.dataSource.sort = this.sort.toArray()[0];
 
       this.dataSource.filterPredicate = (data: RubriqueQuestion, filter) => {
         const dataStr = data.questionn.intitule + data.questionn.qualificatif.minimal + data.questionn.qualificatif.maximal;
@@ -98,8 +126,8 @@ export class RubriqueComposeComponent implements OnInit {
         }
       };
 
-      this.dataSource1.paginator = this.paginator;
-      this.dataSource1.sort = this.sort;
+      this.dataSource1.paginator = this.paginator.toArray()[1];
+      this.dataSource1.sort = this.sort.toArray()[1];
 
       this.dataSource1.filterPredicate = (data:Question, filter) => {
         const dataStr = data.intitule + data.qualificatif.minimal + data.qualificatif.maximal;
@@ -136,7 +164,7 @@ export class RubriqueComposeComponent implements OnInit {
     this.showModalCreate=false;
     
   }
- 
+
 
   Add(idQuestion:number)
   {
@@ -145,11 +173,13 @@ export class RubriqueComposeComponent implements OnInit {
     rq.id.idRubrique=this.idRubrique;
     rq.ordre=this.rubrique.ordre;
     this.rubriqueQuestions.push(rq);
-    
+
   }
   Annuler(){
     this.rubriqueQuestions= [];
     this.showModalCreate=false;
 
   }
+
+
 }
