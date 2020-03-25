@@ -4,6 +4,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import {Etudiant} from "../models/etudiant";
+import { Question } from '../models/quesion';
+import { RubriqueQuestions } from 'src/app/models/rubriqueQuestions';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +50,15 @@ export class RubriqueService {
 
     return this.httpClient.get<Rubrique>(`${this.baseUrl}/${idRubrique}`);
   }
+  public findQuestionNonUtilise(idRubrique:number):Observable<Question[]>
+  {
+    return this.httpClient.get<Question[]>(this.baseUrl+"/QuestionNonUtiliseDansrubrique-"+idRubrique)
+  }
+  public updateRubriqueQuestion(rubriqueQuestions:RubriqueQuestions[]){
+    return this.httpClient.put(this.baseUrl+"/updateRubriqueQuestion", rubriqueQuestions,{responseType: 'text' });
+  }
+  
+  
 
 
   }
