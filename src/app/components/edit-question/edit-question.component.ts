@@ -35,13 +35,15 @@ export class EditQuestionComponent implements OnInit {
           this.questionService.questionData.subscribe(data => {
             this.question = data;
             if (this.editQuestionForm!=null && this.question!=null) {
-              this.editQuestionForm.controls['intitule'].setValue(this.question.intitule);
-              this.editQuestionForm.controls['qualificatif'].setValue(this.question.qualificatif);
+              this.editQuestionForm.controls['intitule'].setValue(data.intitule);
+              this.editQuestionForm.controls['qualificatif'].setValue(data.qualificatif.idQualificatif);
             }
           });
    }
 
    onQuestionEditFormSubmit() {
+    this.question.intitule= this.editQuestionForm.get('intitule').value;
+    this.question.qualificatif.idQualificatif= this.editQuestionForm.get('qualificatif').value;
     this.questionService.updateQuestion(this.question).subscribe((data) => {
       console.log('HANDLED', data);
       if (data != null) {

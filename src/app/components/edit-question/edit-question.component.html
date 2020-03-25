@@ -8,13 +8,13 @@
             <div class="form-group">
               <label class="col-sm-2 control-label">Intitulé<span class="required" aria-required="true"> * </span></label>
               <div class="col-sm-12">
-                <input type="text" class="form-control" formControlName="intitule" [(ngModel)]="question.intitule" required/>
+                <input type="text" class="form-control" formControlName="intitule" required/>
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-2 control-label">Qualificatif<span class="required" aria-required="true"> * </span></label>
               <div class="col-sm-12">
-                <select  class="form-control" formControlName="qualificatif" [(ngModel)]="question.qualificatif.idQualificatif">
+                <select  class="form-control" formControlName="qualificatif">
                   <option *ngFor="let item of qualificatifs" [value]="item.idQualificatif">{{item.minimal}} | {{item.maximal}}</option>
                 </select>
               </div>

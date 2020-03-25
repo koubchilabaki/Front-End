@@ -21,18 +21,16 @@ export class EditQualificatifComponent implements OnInit {
       minimal: new FormControl('', []),
       maximal: new FormControl('', []),
     }); 
-
    this.qualificatifService.qualificatifData.subscribe(data => {
-                                    
           this.qualificatif = data;
-          
-          if (this.editQualificatifForm!=null && this.qualificatif!=null) {
-            this.editQualificatifForm.controls['maximal'].setValue(this.qualificatif.maximal);
-            this.editQualificatifForm.controls['minimal'].setValue(this.qualificatif.minimal);
-          }
+            this.editQualificatifForm.controls['maximal'].setValue(data.maximal);
+            this.editQualificatifForm.controls['minimal'].setValue(data.minimal);
     });
   }
   onEditQualificatifFormSubmit() {
+
+    this.qualificatif.minimal= this.editQualificatifForm.get('minimal').value;
+    this.qualificatif.maximal= this.editQualificatifForm.get('maximal').value;
 
     this.qualificatifService.updateQualificatif(this.qualificatif).subscribe((data) => {
       console.log('HANDLED', data);
