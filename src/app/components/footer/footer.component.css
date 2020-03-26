@@ -1,6 +1,3 @@
-/* Sticky footer styles
--------------------------------------------------- */
-
 html {
   position: relative;
   min-height: 100%;
@@ -18,15 +15,15 @@ body {
 }
 
 .heart{color:#e25555;}
-  
-  /* Custom page CSS
-  -------------------------------------------------- */
-  /* Not required for template or sticky footer method. */
-  
-  .container {
-    width: auto;
-    max-width: 680px;
-    padding: 0 15px;
-    display: flex;
-    justify-content: center;
-  }
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+.container {
+  width: auto;
+  max-width: 680px;
+  padding: 0 15px;
+  display: flex;
+  justify-content: center;
+}
