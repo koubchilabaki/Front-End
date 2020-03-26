@@ -37,8 +37,9 @@ export class EtudiantComponent implements OnInit {
 
   getEtudiantsByACodeFormation(annee:string, code:string){
     this.etudiantService.getEtudiantsByACodeFormation(annee , code).subscribe((etudiants)=>{
-      this.etudiants = etudiants;
 
+      this.etudiants = etudiants;
+      this.etudiants.forEach(element => this.transform(element));
       this.dataSource = new MatTableDataSource(this.etudiants);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -46,6 +47,11 @@ export class EtudiantComponent implements OnInit {
       console.log(error);
     });
   }
+  transform(etudiant:Etudiant):Etudiant{
+    let etud:Etudiant=etudiant;
+    if(etudiant.sexe=="M") etud.sexe="Mr";
+    else etud.sexe="Mme";
+    return etud;}
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
