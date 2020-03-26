@@ -8,13 +8,13 @@
         <div class="form-group">
           <label class="col-sm-2 control-label">Minimal<span class="required" aria-required="true"> * </span></label>
           <div class="col-sm-12">
-            <input type="text" class="form-control" formControlName="minimal" required/>
+            <input type="text" class="form-control" formControlName="minimal" (keydown.space)="$event.preventDefault();" maxlength="16"  required/>
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-2 control-label">Maximal<span class="required" aria-required="true"> * </span></label>
           <div class="col-sm-12">
-            <input type="text" class="form-control" formControlName="maximal" required/>
+            <input type="text" class="form-control" formControlName="maximal" (keydown.space)="$event.preventDefault();" maxlength="16"  required/>
           </div>
         </div>
 
